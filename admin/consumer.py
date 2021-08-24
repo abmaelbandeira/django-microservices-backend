@@ -1,6 +1,7 @@
 import pika
+from admin.settings import CLOUDAMQP_URL
 
-params = pika.URLParameters('amqps://chzdnyno:cxtMA_neMNuK_uWNSPOq7j9daGGiG00h@gull.rmq.cloudamqp.com/chzdnyno')
+params = pika.URLParameters(CLOUDAMQP_URL)
 
 connection = pika.BlockingConnection(params)
 

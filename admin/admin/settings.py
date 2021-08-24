@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import environ
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -21,6 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-$_%lhpy+!%vvkbcik7a(j@%r^7)vt3$+((he0)-1gg@^ytl($-'
+
+
+env = environ.Env()
+root_path = environ.Path(__file__) - 2
+env.read_env(env_file=root_path(".env"))
+CLOUDAMQP_URL = env('CLOUDAMQP_URL',
+                    default='amqp://guest:guest@localhost:5672/%2f')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
