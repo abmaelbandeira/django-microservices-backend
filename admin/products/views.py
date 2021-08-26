@@ -14,6 +14,7 @@ class ProductViewSet(viewsets.ViewSet):
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 
+    # Cria um produto e publica para ser consumido pelo app flask
     def create(self, request):
         serializer = ProductSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
